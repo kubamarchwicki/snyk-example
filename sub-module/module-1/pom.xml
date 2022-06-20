@@ -1,0 +1,63 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.snyk.sample</groupId>
+        <artifactId>sub-module</artifactId>        
+        <version>0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>com.snyk.sample</groupId>
+    <artifactId>module1</artifactId>
+    <packaging>jar</packaging>
+
+
+    <properties>
+        <hzversion>5.1.2</hzversion>
+        <hz.kubernetes.version>2.2.3</hz.kubernetes.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.snyk.sample</groupId>
+            <artifactId>lib</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast</artifactId>
+            <version>${hzversion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast-sql</artifactId>
+            <version>${hzversion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast-kubernetes</artifactId>
+            <version>${hz.kubernetes.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>hazelcast</artifactId>
+                    <groupId>com.hazelcast</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>4.2.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>
