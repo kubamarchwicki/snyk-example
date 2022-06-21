@@ -33,7 +33,7 @@ jobs:
           snyk -v
           snyk auth ${{ secrets.SNYK_TOKEN }}
           status=$(snyk test --all-projects --json-file-output=results.json)                    
-          cat results.json | snyk-to-html json -o results.html -s        
+          cat results.json | snyk-to-html -o results.html -s        
           exit $status
 
       - name: Upload SNYK report
