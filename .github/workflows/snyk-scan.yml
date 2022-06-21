@@ -33,7 +33,7 @@ jobs:
           snyk -v
           snyk auth ${{ secrets.SNYK_TOKEN }}
           status=$(snyk test --all-projects --json-file-output=results.json)                    
-          cat results.json | snyk-to-html -o results.html -s        
+          snyk-to-html -i results.json -o results.html
           exit $status
 
       - name: Upload SNYK report
@@ -41,4 +41,4 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: SNYK dependency check report
-          path: ${{ github.workspace }}/results.html
+          path: ${{ github.workspace }}/results.json
