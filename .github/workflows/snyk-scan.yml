@@ -32,12 +32,11 @@ jobs:
           npm install snyk-to-html -g
           snyk -v
           snyk auth ${{ secrets.SNYK_TOKEN }}
-          status=$(snyk test --all-projects --json | snyk-to-html -o results.html)          
-          exit $status
+          snyk test --all-projects --json | snyk-to-html -o results.html          
 
       - name: Upload SNYK report
         uses: actions/upload-artifact@v3
         if: ${{ !cancelled() }}
         with:
           name: SNYK dependency check report
-          path: ${{ github.workspace }}/results.json
+          path: ${{ github.workspace }}/results.html
