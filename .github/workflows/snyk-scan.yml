@@ -41,4 +41,4 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: SNYK dependency check report
-          path: ${{ github.workspace }}/results.*
+          path: ${{ github.workspace }}/results.html
